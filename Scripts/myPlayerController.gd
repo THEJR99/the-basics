@@ -27,16 +27,28 @@ func _ready(): # Runs when the node and its children load into the scene (Equivo
 
 func _unhandled_input(event: InputEvent): # Kinda like UIS, but rather than connecting actions, you find them as they occur
 	if event is InputEventMouseMotion: # Checks if `event` is the same instance as `InputEventMouseMotion`. (if "hi" is "hi" == false)
-		var mouseMovementFromLastFrame = event.relative.x # The amount of mouse pixels moved left or right from last frame
-		head.rotate_y(-event.screen_relative.x * SENSITIVITY) # Sens is then multiplied to slow down the movement
+		var xMouseMovement = -event.relative.x * SENSITIVITY # The amount of mouse pixels moved left or right from last frame
 		
+		
+		print("Moving Y-Axis __ Degree:\n" + str(event.relative.x * SENSITIVITY))
 		var yMouseInput = -event.screen_relative.y * SENSITIVITY # Get mouse input and scale it via sens
-		var newCameraRotation = camera.rotation.x + yMouseInput # Create variable with new mouse movement added to previous camera x
-		var clampedCameraRotation = clamp(newCameraRotation, deg_to_rad(-40), deg_to_rad(60)) # Clamp the value to stop looking too far up or down
+		var newCameraRotation = camera.transform.basis.get_euler().x + yMouseInput # Create variable with new mouse movement added to previous camera x
+		var clampedCameraRotation =  clamp(newCameraRotation, deg_to_rad(-40), deg_to_rad(60)) # Clamp the value to stop looking too far up or down
 		
-		camera.rotation.x = clampedCameraRotation # Apply the rotation AFTER its been clamped
-		#print(camera.rotation.x)
-
+		head.rotate_y(xMouseMovement)
+		
+		
+		#camera.rotation.x = clampedCameraRotation
+		camera.transform.basis = Basis().rotated(Vector3.RIGHT, clampedCameraRotation)
+		#camera.transform.basis.x = Vector3(1,1,1)
+		#camera.transform.basis *= Basis().rotated(Vector3.RIGHT, deg_to_rad(clampedCameraRotation))
+		
+		
+		#basis = basis.rotated(Vector3.RIGHT, yMouseInput)
+		
+		#camera.transform.basis *= basis
+		
+		
 func _physics_process(delta):
 	# Gravity Hanlder
 	if not is_on_floor(): # Internally checks collider's normal + slope angle to detemine if is floor.
