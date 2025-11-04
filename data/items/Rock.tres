@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://cbsnovo64sgj0"]
+
+[ext_resource type="Script" uid="uid://j84nk2xo2l82" path="res://Scripts/Resources/ItemGeneric.gd" id="1_ps8dr"]
+
+[resource]
+script = ExtResource("1_ps8dr")
+name = "Rock"
+weight = 2.0
+description = "A simple, yet important resource for progression and technology."
