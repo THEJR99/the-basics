@@ -1,7 +1,5 @@
 extends CharacterBody3D
 
-# Just to test
-
 var speed
 const WALK_SPEED = 5.0
 const SPRINT_SPEED = 8.0
@@ -32,7 +30,7 @@ func _unhandled_input(event: InputEvent): # Kinda like UIS, but rather than conn
 		var xMouseMovement = -event.relative.x * SENSITIVITY # The amount of mouse pixels moved left or right from last frame
 		
 		
-		print("Moving Y-Axis __ Degree:\n" + str(event.relative.x * SENSITIVITY))
+		#print("Moving Y-Axis __ Degree:\n" + str(event.relative.x * SENSITIVITY))
 		var yMouseInput = -event.screen_relative.y * SENSITIVITY # Get mouse input and scale it via sens
 		var newCameraRotation = camera.transform.basis.get_euler().x + yMouseInput # Create variable with new mouse movement added to previous camera x
 		var clampedCameraRotation =  clamp(newCameraRotation, deg_to_rad(-40), deg_to_rad(60)) # Clamp the value to stop looking too far up or down

@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dv85urrx3rqme"]
+[gd_scene load_steps=9 format=3 uid="uid://dv85urrx3rqme"]
 
 [ext_resource type="Script" uid="uid://iglactdreysx" path="res://Scripts/myPlayerController.gd" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://damc3tm73ie3e" path="res://Scripts/interact.gd" id="2_0xm2m"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -53,6 +54,7 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0
 [node name="Camera3D" type="Camera3D" parent="PlayerObject/Head"]
 
 [node name="Interact" type="Node3D" parent="PlayerObject"]
+script = ExtResource("2_0xm2m")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1938233, 0.57335854, 5.253453)
