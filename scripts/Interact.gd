@@ -3,23 +3,19 @@ extends Node
 @onready var head = $"../Head"
 @onready var camera = $"../Head/Camera3D"
 
+var interaction_range = 2.5
+
 func _ready():
-	var leftRight = head.transform.basis.get_euler().y
-	var upDown = camera.rotation.x
 	await get_tree().create_timer(10.0).timeout
-	print("X-Movement Cordinate: " + str(leftRight))
-	print("Y-Movement Cordinate: " + str(upDown))
 
 
 func _input(event):
 	if event is InputEventKey:
-		if Input.is_action_just_pressed("interact"):
-			print("Pressed E!")
+		if Input.is_action_just_pressed("interact"): # E
 			var origin = camera.global_position
 			var direction = -camera.global_transform.basis.z.normalized()
-			var length = 5
 			
-			var endPosition = origin + direction * length
+			var endPosition = origin + direction * interaction_range
 			debug_ray(origin, endPosition)
 
 

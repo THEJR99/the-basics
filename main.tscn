@@ -1,9 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://dv85urrx3rqme"]
+[gd_scene load_steps=15 format=3 uid="uid://dv85urrx3rqme"]
 
-[ext_resource type="Script" uid="uid://iglactdreysx" path="res://Scripts/myPlayerController.gd" id="1_0xm2m"]
-[ext_resource type="Script" uid="uid://damc3tm73ie3e" path="res://Scripts/interact.gd" id="2_0xm2m"]
-[ext_resource type="Script" uid="uid://cvushtw324hxh" path="res://Scripts/PickableItem.gd" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://iglactdreysx" path="res://scripts/core/Controls.gd" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://cp4jlulcs7xck" path="res://scripts/core/Entity.gd" id="1_7mycd"]
+[ext_resource type="Script" uid="uid://damc3tm73ie3e" path="res://scripts/Interact.gd" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://cvushtw324hxh" path="res://scripts/PickableItem.gd" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://uwbsox63qpns" path="res://scripts/core/Inventory.gd" id="3_lquwl"]
 [ext_resource type="Resource" uid="uid://cbsnovo64sgj0" path="res://data/items/Rock.tres" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://cb4f55au4fw1s" path="res://Stats.gd" id="5_272bh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -45,7 +48,7 @@ size = Vector3(0.9995117, 1, 1)
 
 [node name="PlayerObject" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9827781, 0)
-script = ExtResource("1_0xm2m")
+script = ExtResource("1_7mycd")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerObject"]
 mesh = SubResource("CapsuleMesh_0xm2m")
@@ -60,6 +63,15 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0
 
 [node name="Interact" type="Node3D" parent="PlayerObject"]
 script = ExtResource("2_0xm2m")
+
+[node name="Inventory" type="Node3D" parent="PlayerObject"]
+script = ExtResource("3_lquwl")
+
+[node name="Controls" type="Node3D" parent="PlayerObject"]
+script = ExtResource("1_0xm2m")
+
+[node name="Stats" type="Node3D" parent="PlayerObject"]
+script = ExtResource("5_272bh")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1938233, 0.57335854, 5.253453)
