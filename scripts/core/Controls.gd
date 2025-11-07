@@ -39,7 +39,7 @@ func _unhandled_input(event: InputEvent): # Kinda like UIS, but rather than conn
 		#print("Moving Y-Axis __ Degree:\n" + str(event.relative.x * SENSITIVITY))
 		var yMouseInput = -event.screen_relative.y * SENSITIVITY # Get mouse input and scale it via sens
 		var newCameraRotation = camera.transform.basis.get_euler().x + yMouseInput # Create variable with new mouse movement added to previous camera x
-		var clampedCameraRotation =  clamp(newCameraRotation, deg_to_rad(-40), deg_to_rad(60)) # Clamp the value to stop looking too far up or down
+		var clampedCameraRotation =  clamp(newCameraRotation, deg_to_rad(-90), deg_to_rad(90)) # Clamp the value to stop looking too far up or down
 		
 		head.rotate_y(xMouseMovement)
 		

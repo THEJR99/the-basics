@@ -1,23 +1,43 @@
 extends Node
 
+@onready var character = $".."
 @onready var head = $"../Head"
 @onready var camera = $"../Head/Camera3D"
 
 var interaction_range = 2.5
 
-func _ready():
-	await get_tree().create_timer(10.0).timeout
+#func _ready():
+	#await get_tree().create_timer(10.0).timeout
 
 
 func _input(event):
 	if event is InputEventKey:
 		if Input.is_action_just_pressed("interact"): # E
-			var origin = camera.global_position
-			var direction = -camera.global_transform.basis.z.normalized()
-			
-			var endPosition = origin + direction * interaction_range
-			debug_ray(origin, endPosition)
+			handle_interaction_key_press()
 
+func handle_interaction_key_press():
+	var origin = camera.global_position
+	var direction = -camera.global_transform.basis.z.normalized()
+	var endPosition = origin + direction * interaction_range
+	var exclude = [character]
+	
+	var result = await raycast_basic(origin, endPosition, exclude)
+	
+	if not result:
+		print("Nothing was hit...")
+	else:
+		print(result["collider"].name)
+	
+	
+	debug_ray(origin, endPosition)
+
+func raycast_basic(origin, end, exclude_list):
+	await get_tree().physics_frame # Yeilds for physics step to then run
+	var space_state = get_viewport().world_3d.direct_space_state
+	var query = PhysicsRayQueryParameters3D.create(origin, end)
+	query.exclude = exclude_list
+	var result = space_state.intersect_ray(query)
+	return result
 
 func debug_ray(origin: Vector3, end: Vector3):
 	var start_sphere = create_debug_sphere(origin, Color.RED)
