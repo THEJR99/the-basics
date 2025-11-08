@@ -1,11 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://dv85urrx3rqme"]
+[gd_scene load_steps=14 format=3 uid="uid://dv85urrx3rqme"]
 
 [ext_resource type="Script" uid="uid://iglactdreysx" path="res://scripts/core/Controls.gd" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://cp4jlulcs7xck" path="res://scripts/core/Entity.gd" id="1_7mycd"]
 [ext_resource type="Script" uid="uid://damc3tm73ie3e" path="res://scripts/Interact.gd" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://cvushtw324hxh" path="res://scripts/PickableItem.gd" id="3_h2yge"]
 [ext_resource type="Script" uid="uid://uwbsox63qpns" path="res://scripts/core/Inventory.gd" id="3_lquwl"]
-[ext_resource type="Resource" uid="uid://cbsnovo64sgj0" path="res://data/items/Rock.tres" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://cb4f55au4fw1s" path="res://Stats.gd" id="5_272bh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
@@ -81,10 +80,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1938233, 0.57335854, 5.2534
 size = Vector3(3.3652344, 1.0390625, 3.2748413)
 material = SubResource("StandardMaterial3D_ig7tw")
 
-[node name="ItemToBePickedUp" type="CSGBox3D" parent="."]
+[node name="ItemToBePickedUp" type="CSGBox3D" parent="." groups=["pickables"]]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.31340164, 9.571)
 use_collision = true
 material = SubResource("StandardMaterial3D_0xm2m")
 script = ExtResource("3_h2yge")
-itemData = ExtResource("4_1bvp3")
 metadata/pickable = true

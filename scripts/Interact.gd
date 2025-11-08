@@ -4,6 +4,8 @@ extends Node
 @onready var head = $"../Head"
 @onready var camera = $"../Head/Camera3D"
 
+@onready var inventory = $"../Inventory"
+
 var interaction_range = 2.5
 
 #func _ready():
@@ -26,7 +28,13 @@ func handle_interaction_key_press():
 	if not result:
 		print("Nothing was hit...")
 	else:
-		print(result["collider"].name)
+		var collider = result["collider"]
+		var is_pickable = collider.is_in_group("pickables")
+		
+		if is_pickable:
+			inventory.pick_up_item(collider)
+		
+		print(collider.name)
 	
 	
 	debug_ray(origin, endPosition)
