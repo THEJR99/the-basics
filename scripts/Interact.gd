@@ -27,16 +27,14 @@ func handle_interaction_key_press():
 	
 	if not result:
 		print("Nothing was hit...")
-	else:
-		var collider = result["collider"]
-		var is_pickable = collider.is_in_group("pickables")
-		
-		if is_pickable:
-			inventory.pick_up_item(collider)
-		
-		print(collider.name)
+		return
 	
+	var collider = result["collider"]
+	var is_pickable = collider.is_in_group("pickables")
 	
+	if is_pickable:
+		inventory.pick_up_item(collider)
+
 	debug_ray(origin, endPosition)
 
 func raycast_basic(origin, end, exclude_list):

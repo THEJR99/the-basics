@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dv85urrx3rqme"]
+[gd_scene load_steps=16 format=3 uid="uid://dv85urrx3rqme"]
 
 [ext_resource type="Script" uid="uid://iglactdreysx" path="res://scripts/core/Controls.gd" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://cp4jlulcs7xck" path="res://scripts/core/Entity.gd" id="1_7mycd"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cvushtw324hxh" path="res://scripts/PickableItem.gd" id="3_h2yge"]
 [ext_resource type="Script" uid="uid://uwbsox63qpns" path="res://scripts/core/Inventory.gd" id="3_lquwl"]
 [ext_resource type="Script" uid="uid://cb4f55au4fw1s" path="res://Stats.gd" id="5_272bh"]
+[ext_resource type="Script" uid="uid://j84nk2xo2l82" path="res://scripts/resources/ItemGeneric.gd" id="7_272bh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -30,6 +31,13 @@ albedo_color = Color(0.019607844, 1, 0.6666667, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0xm2m"]
 albedo_color = Color(0.17254902, 0.17254902, 0.17254902, 1)
+
+[sub_resource type="Resource" id="Resource_5vw27"]
+script = ExtResource("7_272bh")
+name = "Rock"
+weight = 2.0
+description = "Basic material."
+metadata/_custom_type_script = "uid://j84nk2xo2l82"
 
 [node name="Main" type="Node3D"]
 
@@ -85,4 +93,5 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.31340164, 9.571)
 use_collision = true
 material = SubResource("StandardMaterial3D_0xm2m")
 script = ExtResource("3_h2yge")
+item_data = SubResource("Resource_5vw27")
 metadata/pickable = true

@@ -69,7 +69,7 @@ func _physics_process(delta):
 	# Handle Sprint.
 	var sprintKeyHeld = Input.is_action_pressed("sprint") # Gets sprint key via Project > Project Settings > Input Map
 	var weightSlowdown = weight_util_to_weighdown
-	var currentWeight = inventory.weight
+	var currentWeight = inventory.current_weight
 	if sprintKeyHeld: # Set variable to be used elsewhere
 		speed = SPRINT_SPEED
 	else:

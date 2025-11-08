@@ -1,10 +1,9 @@
 extends Node
 class_name Inventory
 
-var BASE_WEIGHT = 10
+var BASE_WEIGHT = 1.0
 
 var items = {} # Rock : 4
-var t = { "Fuck": 123 }
 var current_weight: float = 0.0 # Current weight of the Inventory's Contents.
 var carriable_weight = BASE_WEIGHT
 
@@ -21,39 +20,32 @@ func weight_points_changed(newPoints) -> void:
 	print("Weight updated! New weight: " + str(new_total_weight))
 
 func pick_up_item(item):
-	
 	var item_data: ItemData = item.item_data
-	var quantity = item_data.quantity
-	var item_weight = item_data.weight
-	var weight_to_pick_up = quantity * item_weight
+	var item_name: String = item_data.name
+	var quantity: int = item_data.quantity
+	var item_weight: float = item_data.weight
+	var total_pick_up_weight: float = quantity * item_weight
 	
-	print(item)
+	var valid_weight: bool = weight_added_check(total_pick_up_weight)
+	if not valid_weight:
+		print("Item is too heavy! Cannot pick up.")
+		return
+	
+	current_weight += total_pick_up_weight
+	
+	if item_data.name in items:
+		items[item_name] += quantity
+	else:
+		items[item_name] = quantity
+	
+	print(items)
+	
+	item.on_picked_up()
 
-func weight_added_check(weight_to_add):
+func weight_added_check(weight_to_add) -> bool:
 	var newWeight = current_weight + weight_to_add
 	
 	if newWeight > carriable_weight:
-		print("Cannot pick up this item! You're holding too much weight!")
 		return false
-	
-	return true
-
-func add_item(item: ItemData) -> bool:
-	var newWeight = current_weight + item.weight
-	
-	if newWeight > carriable_weight:
-		print("Cannot pick up this item! You're holding too much weight!")
-		return false
-	
-	current_weight = newWeight
-	var itemQuantity = items[item.name]
-	print("Picking up new item: " + item.name)
-	
-	if not itemQuantity:
-		items[item.name] = 1
-	else:
-		items[item.name] += 1 
-		
-	print("New quantity of " + item.name + "is " + str(items[item.name]) )
 	
 	return true
