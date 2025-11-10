@@ -95,3 +95,16 @@ material = SubResource("StandardMaterial3D_0xm2m")
 script = ExtResource("3_h2yge")
 item_data = SubResource("Resource_5vw27")
 metadata/pickable = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GridContainer" type="GridContainer" parent="Control"]
+layout_mode = 0
+offset_left = 249.0
+offset_top = 175.0
+offset_right = 1120.0
+offset_bottom = 661.0
