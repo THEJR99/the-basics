@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dv85urrx3rqme"]
+[gd_scene load_steps=17 format=3 uid="uid://dv85urrx3rqme"]
 
 [ext_resource type="Script" uid="uid://iglactdreysx" path="res://scripts/core/Controls.gd" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://cp4jlulcs7xck" path="res://scripts/core/Entity.gd" id="1_7mycd"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://uwbsox63qpns" path="res://scripts/core/Inventory.gd" id="3_lquwl"]
 [ext_resource type="Script" uid="uid://cb4f55au4fw1s" path="res://Stats.gd" id="5_272bh"]
 [ext_resource type="Script" uid="uid://j84nk2xo2l82" path="res://scripts/resources/ItemGeneric.gd" id="7_272bh"]
+[ext_resource type="Texture2D" uid="uid://blxvf3xqqna7m" path="res://assets/grey_rock_icon.png" id="8_5vw27"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -162,14 +163,20 @@ layout_mode = 2
 theme_override_constants/h_separation = 10
 columns = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="InventoryUI/VBoxContainer/BackgroundContainer/InventoryPadding/InventoryGrid"]
+[node name="Button" type="Button" parent="InventoryUI/VBoxContainer/BackgroundContainer/InventoryPadding/InventoryGrid"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-theme_override_constants/separation = 4
+size_flags_horizontal = 0
+size_flags_vertical = 4
+icon = ExtResource("8_5vw27")
+icon_alignment = 1
+expand_icon = true
 
-[node name="Label" type="Label" parent="InventoryUI/VBoxContainer/BackgroundContainer/InventoryPadding/InventoryGrid/VBoxContainer"]
-layout_mode = 2
-
-[node name="Button" type="Button" parent="InventoryUI/VBoxContainer/BackgroundContainer/InventoryPadding/InventoryGrid/VBoxContainer"]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
+[node name="Label" type="Label" parent="InventoryUI/VBoxContainer/BackgroundContainer/InventoryPadding/InventoryGrid/Button"]
+layout_direction = 2
+layout_mode = 1
+offset_right = 42.0
+offset_bottom = 23.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "100"
