@@ -96,15 +96,80 @@ script = ExtResource("3_h2yge")
 item_data = SubResource("Resource_5vw27")
 metadata/pickable = true
 
-[node name="Control" type="Control" parent="."]
+[node name="InventoryUI" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="GridContainer" type="GridContainer" parent="Control"]
+[node name="VBoxContainer" type="VBoxContainer" parent="InventoryUI"]
 layout_mode = 0
-offset_left = 249.0
-offset_top = 175.0
-offset_right = 1120.0
-offset_bottom = 661.0
+offset_right = 1440.0
+offset_bottom = 810.0
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="InventoryUI/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorRect" type="ColorRect" parent="InventoryUI/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+color = Color(0.20748147, 0.14230138, 0.10080435, 1)
+
+[node name="Label" type="Label" parent="InventoryUI/VBoxContainer/MarginContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+text = "Inventory"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackgroundContainer" type="MarginContainer" parent="InventoryUI/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="BackgroundColor" type="ColorRect" parent="InventoryUI/VBoxContainer/BackgroundContainer"]
+custom_minimum_size = Vector2(500, 350)
+layout_mode = 2
+color = Color(0.7569465, 0.6012072, 0.50033396, 1)
+
+[node name="InventoryPadding" type="MarginContainer" parent="InventoryUI/VBoxContainer/BackgroundContainer"]
+custom_minimum_size = Vector2(500, 350)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="InventoryGrid" type="GridContainer" parent="InventoryUI/VBoxContainer/BackgroundContainer/InventoryPadding"]
+layout_direction = 2
+layout_mode = 2
+theme_override_constants/h_separation = 10
+columns = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InventoryUI/VBoxContainer/BackgroundContainer/InventoryPadding/InventoryGrid"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="InventoryUI/VBoxContainer/BackgroundContainer/InventoryPadding/InventoryGrid/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="InventoryUI/VBoxContainer/BackgroundContainer/InventoryPadding/InventoryGrid/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
