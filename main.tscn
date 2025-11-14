@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://cvushtw324hxh" path="res://scripts/PickableItem.gd" id="3_h2yge"]
 [ext_resource type="Script" uid="uid://uwbsox63qpns" path="res://scripts/core/Inventory.gd" id="3_lquwl"]
 [ext_resource type="Script" uid="uid://cb4f55au4fw1s" path="res://Stats.gd" id="5_272bh"]
-[ext_resource type="Script" uid="uid://j84nk2xo2l82" path="res://scripts/resources/ItemGeneric.gd" id="7_272bh"]
+[ext_resource type="Script" uid="uid://j84nk2xo2l82" path="res://scripts/resources/GenericItem.gd" id="7_272bh"]
 [ext_resource type="Texture2D" uid="uid://blxvf3xqqna7m" path="res://assets/grey_rock_icon.png" id="8_5vw27"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]

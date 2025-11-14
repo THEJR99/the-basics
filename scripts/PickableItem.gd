@@ -1,6 +1,6 @@
 extends CSGBox3D
 
-@export var item_data: ItemData
+@export var item_data: GenericItemData
 
 func _ready():
 	add_to_group("pickables")

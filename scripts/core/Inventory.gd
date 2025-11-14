@@ -20,7 +20,7 @@ func weight_points_changed(newPoints) -> void:
 	print("Weight updated! New weight: " + str(new_total_weight))
 
 func pick_up_item(item):
-	var item_data: ItemData = item.item_data
+	var item_data: GenericItemData = item.item_data
 	var item_name: String = item_data.name
 	var quantity: int = item_data.quantity
 	var item_weight: float = item_data.weight
