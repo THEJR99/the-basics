@@ -7,6 +7,8 @@ var items = {} # Rock : 4
 var current_weight: float = 0.0 # Current weight of the Inventory's Contents.
 var carriable_weight = BASE_WEIGHT
 
+signal inventory_contents_changed
+
 
 
 @onready var stats_system = $"../Stats"
@@ -41,6 +43,7 @@ func pick_up_item(item):
 	print(items)
 	
 	item.on_picked_up()
+	inventory_contents_changed.emit()
 
 func weight_added_check(weight_to_add) -> bool:
 	var newWeight = current_weight + weight_to_add
@@ -49,3 +52,6 @@ func weight_added_check(weight_to_add) -> bool:
 		return false
 	
 	return true
+
+func get_inventory_contents():
+	return items
