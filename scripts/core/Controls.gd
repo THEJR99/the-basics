@@ -26,34 +26,26 @@ var gravity = 9.8
 @onready var character_body = $".."
 
 @onready var inventory = $"../Inventory"
+@onready var inventory_ui = $"../InventoryUI"
 
 func _ready(): # Runs when the node and its children load into the scene (Equivolent to :WaitForChild() and all its children )
 	print("Started")
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED) # Locks mouse to center invisibly
 
+func _input(event):
+	if event is InputEventKey:
+		if Input.is_action_just_pressed("inventory"): # E
+			open_inventory()
+
 func _unhandled_input(event: InputEvent): # Kinda like UIS, but rather than connecting actions, you find them as they occur
 	if event is InputEventMouseMotion: # Checks if `event` is the same instance as `InputEventMouseMotion`. (if "hi" is "hi" == false)
 		var xMouseMovement = -event.relative.x * SENSITIVITY # The amount of mouse pixels moved left or right from last frame
 		
-		
-		#print("Moving Y-Axis __ Degree:\n" + str(event.relative.x * SENSITIVITY))
 		var yMouseInput = -event.screen_relative.y * SENSITIVITY # Get mouse input and scale it via sens
 		var newCameraRotation = camera.transform.basis.get_euler().x + yMouseInput # Create variable with new mouse movement added to previous camera x
 		var clampedCameraRotation =  clamp(newCameraRotation, deg_to_rad(-90), deg_to_rad(90)) # Clamp the value to stop looking too far up or down
-		
 		head.rotate_y(xMouseMovement)
-		
-		
-		#camera.rotation.x = clampedCameraRotation
 		camera.transform.basis = Basis().rotated(Vector3.RIGHT, clampedCameraRotation)
-		#camera.transform.basis.x = Vector3(1,1,1)
-		#camera.transform.basis *= Basis().rotated(Vector3.RIGHT, deg_to_rad(clampedCameraRotation))
-		
-		
-		#basis = basis.rotated(Vector3.RIGHT, yMouseInput)
-		
-		#camera.transform.basis *= basis
-		
 		
 func _physics_process(delta):
 	# Gravity Hanlder
@@ -114,9 +106,11 @@ func _physics_process(delta):
 	
 	character_body.move_and_slide() # Allows for velocity to take affect once applied
 
-
 func _headbob(time) -> Vector3:
 	var pos = Vector3.ZERO # Bob offset
 	pos.y = sin(time * BOB_FREQ) * BOB_AMP
 	pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
 	return pos
+
+func open_inventory():
+	inventory_ui.toggle_ui()

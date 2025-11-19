@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://suy7jhoha025"]
+
+[node name="InventorySlot" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+icon_alignment = 1
+expand_icon = true
+
+[node name="Label" type="Label" parent="Button"]
+layout_direction = 2
+layout_mode = 1
+offset_right = 42.0
+offset_bottom = 23.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "0"

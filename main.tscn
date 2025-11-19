@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dv85urrx3rqme"]
+[gd_scene load_steps=19 format=3 uid="uid://dv85urrx3rqme"]
 
 [ext_resource type="Script" uid="uid://iglactdreysx" path="res://scripts/core/Controls.gd" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://cp4jlulcs7xck" path="res://scripts/core/Entity.gd" id="1_7mycd"]
@@ -6,8 +6,9 @@
 [ext_resource type="Script" uid="uid://cvushtw324hxh" path="res://scripts/PickableItem.gd" id="3_h2yge"]
 [ext_resource type="Script" uid="uid://uwbsox63qpns" path="res://scripts/core/Inventory.gd" id="3_lquwl"]
 [ext_resource type="Script" uid="uid://cb4f55au4fw1s" path="res://Stats.gd" id="5_272bh"]
+[ext_resource type="PackedScene" uid="uid://suy7jhoha025" path="res://scenes/InventoryItemSlot.tscn" id="7_4c57u"]
 [ext_resource type="Script" uid="uid://j84nk2xo2l82" path="res://scripts/resources/GenericItem.gd" id="7_272bh"]
-[ext_resource type="Texture2D" uid="uid://blxvf3xqqna7m" path="res://assets/grey_rock_icon.png" id="8_5vw27"]
+[ext_resource type="Texture2D" uid="uid://blxvf3xqqna7m" path="res://assets/images/grey_rock_icon.png" id="8_5vw27"]
 [ext_resource type="Script" uid="uid://cwhtbepcxjq3r" path="res://inventory_ui_handler.gd" id="8_kek77"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
@@ -86,7 +87,6 @@ script = ExtResource("1_0xm2m")
 script = ExtResource("5_272bh")
 
 [node name="InventoryUI" type="Control" parent="PlayerObject"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -94,6 +94,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("8_kek77")
+item_slot_scene = ExtResource("7_4c57u")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PlayerObject/InventoryUI"]
 layout_mode = 0
@@ -102,17 +103,17 @@ offset_bottom = 810.0
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="PlayerObject/InventoryUI/VBoxContainer"]
+[node name="InventoryLabel" type="MarginContainer" parent="PlayerObject/InventoryUI/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="ColorRect" type="ColorRect" parent="PlayerObject/InventoryUI/VBoxContainer/MarginContainer"]
+[node name="ColorRect" type="ColorRect" parent="PlayerObject/InventoryUI/VBoxContainer/InventoryLabel"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 color = Color(0.20748147, 0.14230138, 0.10080435, 1)
 
-[node name="Label" type="Label" parent="PlayerObject/InventoryUI/VBoxContainer/MarginContainer/ColorRect"]
+[node name="Label" type="Label" parent="PlayerObject/InventoryUI/VBoxContainer/InventoryLabel/ColorRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -127,17 +128,17 @@ text = "Inventory"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BackgroundContainer" type="MarginContainer" parent="PlayerObject/InventoryUI/VBoxContainer"]
+[node name="InventorySlotContainer" type="MarginContainer" parent="PlayerObject/InventoryUI/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="BackgroundColor" type="ColorRect" parent="PlayerObject/InventoryUI/VBoxContainer/BackgroundContainer"]
+[node name="BackgroundColor" type="ColorRect" parent="PlayerObject/InventoryUI/VBoxContainer/InventorySlotContainer"]
 custom_minimum_size = Vector2(500, 350)
 layout_mode = 2
 color = Color(0.7569465, 0.6012072, 0.50033396, 1)
 
-[node name="InventoryPadding" type="MarginContainer" parent="PlayerObject/InventoryUI/VBoxContainer/BackgroundContainer"]
+[node name="InventoryPadding" type="MarginContainer" parent="PlayerObject/InventoryUI/VBoxContainer/InventorySlotContainer"]
 custom_minimum_size = Vector2(500, 350)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -147,13 +148,13 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="InventoryGrid" type="GridContainer" parent="PlayerObject/InventoryUI/VBoxContainer/BackgroundContainer/InventoryPadding"]
+[node name="InventoryGrid" type="GridContainer" parent="PlayerObject/InventoryUI/VBoxContainer/InventorySlotContainer/InventoryPadding"]
 layout_direction = 2
 layout_mode = 2
 theme_override_constants/h_separation = 10
 columns = 8
 
-[node name="Button" type="Button" parent="PlayerObject/InventoryUI/VBoxContainer/BackgroundContainer/InventoryPadding/InventoryGrid"]
+[node name="Button" type="Button" parent="PlayerObject/InventoryUI/VBoxContainer/InventorySlotContainer/InventoryPadding/InventoryGrid"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -162,7 +163,7 @@ icon = ExtResource("8_5vw27")
 icon_alignment = 1
 expand_icon = true
 
-[node name="Label" type="Label" parent="PlayerObject/InventoryUI/VBoxContainer/BackgroundContainer/InventoryPadding/InventoryGrid/Button"]
+[node name="Label" type="Label" parent="PlayerObject/InventoryUI/VBoxContainer/InventorySlotContainer/InventoryPadding/InventoryGrid/Button"]
 layout_direction = 2
 layout_mode = 1
 offset_right = 42.0

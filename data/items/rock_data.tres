@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://cyykxeftnq18y"]
 
-[ext_resource type="Texture2D" uid="uid://blxvf3xqqna7m" path="res://assets/grey_rock_icon.png" id="1_nv0oh"]
-[ext_resource type="Script" uid="uid://dlqlifqtn7ap3" path="res://scripts/resources/RockData.gd" id="1_p2vqn"]
+[ext_resource type="Texture2D" uid="uid://blxvf3xqqna7m" path="res://assets/images/grey_rock_icon.png" id="1_nv0oh"]
+[ext_resource type="Script" path="res://scripts/resources/RockData.gd" id="1_p2vqn"]
 
 [resource]
 script = ExtResource("1_p2vqn")

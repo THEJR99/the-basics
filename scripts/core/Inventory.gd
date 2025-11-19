@@ -3,7 +3,7 @@ class_name Inventory
 
 var BASE_WEIGHT = 1.0
 
-var items = {} # Rock : 4
+var items = {} # { Rock : 4 }
 var current_weight: float = 0.0 # Current weight of the Inventory's Contents.
 var carriable_weight = BASE_WEIGHT
 
